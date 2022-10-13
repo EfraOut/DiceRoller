@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             6 -> diceImage.setImageResource(R.drawable.dice_6)
         }
         // Add a description to be read, if needed
-        diceImage.contentDescription(dice.roll()).toString()
+        diceImage.contentDescription = dice.roll().toString()
     }
 }
 
