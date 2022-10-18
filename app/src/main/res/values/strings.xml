@@ -4,4 +4,7 @@
     <string name="total">Total</string>
     <string name="total_number">NaN</string>
     <string name="special_text">Just a pair of dice</string>
+    <string name="roll_3">Roll thrice</string>
+    <string name="max_rolled_text">Max Rolled</string>
+    <string name="max_rolled_number">0</string>
 </resources>

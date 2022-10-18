@@ -23,12 +23,31 @@ class MainActivity : AppCompatActivity() {
         val rollButton: Button = findViewById(R.id.button)
         rollButton.setOnClickListener { rollDice(dice, dice2) }
 
+        val thriceButton: Button = findViewById(R.id.button2)
+        thriceButton.setOnClickListener {
+            var maxRolled = 0
+            for (i in 1..1000){
+                var total: Int = rollDice(dice, dice2)
+
+                if (total > maxRolled) {
+                    maxRolled = total
+                }
+                val viewMaxRolled: TextView = findViewById(R.id.textView5)
+                viewMaxRolled.text = maxRolled.toString()
+            }
+        }
+
         // Roll dice when app boots up
         rollDice(dice, dice2)
     }
 
-    private fun rollDice(dice: Dice, dice2: Dice) {
+    /**
+     * All of the program happens here. This function imitates rolling a dice, and
+     * ir includes all the logic so it is displayed on the app
+     */
+    private fun rollDice(dice: Dice, dice2: Dice): Int {
 
+        // Creating the dice and getting the total
         val diceRoll1: Int = dice.roll()
         val diceRoll2: Int = dice2.roll()
         val total = diceRoll1 + diceRoll2
@@ -49,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val diceImage: ImageView = findViewById(R.id.imageView)
         val diceImage2: ImageView = findViewById(R.id.imageView2)
 
-        // Updating the image based on the dice roll
+        // Updating the image for the first die based on the dice roll
         when (diceRoll1) {
             1 -> diceImage.setImageResource(R.drawable.dice_1)
             2 -> diceImage.setImageResource(R.drawable.dice_2)
@@ -59,6 +78,7 @@ class MainActivity : AppCompatActivity() {
             6 -> diceImage.setImageResource(R.drawable.dice_6)
         }
 
+        // Updating the image for the first die based on the dice roll
         when (diceRoll2) {
             1 -> diceImage2.setImageResource(R.drawable.dice_1)
             2 -> diceImage2.setImageResource(R.drawable.dice_2)
@@ -67,9 +87,12 @@ class MainActivity : AppCompatActivity() {
             5 -> diceImage2.setImageResource(R.drawable.dice_5)
             6 -> diceImage2.setImageResource(R.drawable.dice_6)
         }
+
         // Add a description to be read, if needed
         diceImage.contentDescription = diceRoll1.toString()
         diceImage2.contentDescription = diceRoll2.toString()
+
+        return total
     }
 }
 
